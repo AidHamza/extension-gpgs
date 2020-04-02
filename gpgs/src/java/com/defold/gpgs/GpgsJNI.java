@@ -621,15 +621,19 @@ public class GpgsJNI {
 
     private static JSONObject scoreToJSON(LeaderboardScore score) throws JSONException {
         JSONObject json = new JSONObject();
-        json.put("display_rank", score.getDisplayRank());
-        json.put("display_score", score.getDisplayScore());
-        json.put("rank", score.getRank());
-        json.put("score", score.getRawScore());
-        json.put("tag", score.getScoreTag());
-        json.put("timestamp", score.getTimestampMillis());
-        json.put("score_holder_name", score.getScoreHolderDisplayName());
-        json.put("score_holder_icon", score.getScoreHolderIconImageUri());
-        json.put("score_holder_image", score.getScoreHolderHiResImageUri());
+        try {
+            json.put("display_rank", score.getDisplayRank());
+            json.put("display_score", score.getDisplayScore());
+            json.put("rank", score.getRank());
+            json.put("score", score.getRawScore());
+            json.put("tag", score.getScoreTag());
+            json.put("timestamp", score.getTimestampMillis());
+            json.put("score_holder_name", score.getScoreHolderDisplayName());
+            json.put("score_holder_icon", score.getScoreHolderIconImageUri());
+            json.put("score_holder_image", score.getScoreHolderHiResImageUri());
+        } catch (Exception e) {
+            throw new JSONException(e);
+        }
         return json;
     }
 
